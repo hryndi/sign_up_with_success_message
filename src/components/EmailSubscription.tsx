@@ -9,7 +9,7 @@ import IllustrationImgMobi from "../assets/illustration-sign-up-mobile.svg";
 import IllustrationImgDesk from "../assets/illustration-sign-up-desktop.svg";
 import { useTheme } from "@mui/material/styles";
 import BulletImg from "../assets/icon-list.svg";
-import { ChangeEvent, useRef, useState } from "react";
+import { useState } from "react";
 
 const Main = styledMui(Box)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
@@ -18,17 +18,29 @@ const Main = styledMui(Box)(({ theme }) => ({
 
   "@media (min-width:600px)": {
     padding: "1.4rem",
+  },
+  "@media (min-width:750px)": {
+    padding: "3rem",
+    margin: "2rem",
     borderRadius: "30px",
+  },
+  "@media (min-width:927px)": {
+    margin: 0,
+    padding: "1.4rem",
   },
 }));
 
 const SGridContainer = styledMui(Grid)({
-  flexDirection: "column",
-  maxWidth: "375px",
-  "@media (min-width:600px)": {
-    gap: 22,
+  "@media (min-width:375px)": {
     flexDirection: "row-reverse",
+    maxWidth: "650px",
+    justifyContent: "center",
+    gap: 22,
+  },
+
+  "@media (min-width:935px)": {
     maxWidth: "none",
+    gap: 0,
   },
 });
 
@@ -57,11 +69,20 @@ const SButton = styledMui(Button)({
   marginBottom: "1.5rem",
   height: "3.5rem",
   borderRadius: "6px",
+  maxWidth: "385px",
+  "@media (min-width:750px)": {
+    marginBottom: 0,
+  },
 });
 
-const EmailSubscription = () => {
+interface EmailSubscriptionProps {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const EmailSubscription = ({ value, setValue }: EmailSubscriptionProps) => {
   const [errorr, setError] = useState(false);
-  const [value, setValue] = useState("");
+
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (value.includes("@")) {
@@ -82,14 +103,22 @@ const EmailSubscription = () => {
             <img src={IllustrationImgMobi} alt="illustration image" />
           </picture>
         </Grid>
-        <Grid sx={{ padding: { xs: 3, md: 5 }, paddingBlock: { xs: 5 } }} item marginBlock={"auto"} maxWidth={"460px"}>
+        <Grid
+          sx={{
+            maxWidth: { xs: "425px", sm: "490px" },
+            paddingInline: { xs: 3, sm: 5 },
+          }}
+          item
+          marginBlock={"auto"}
+          maxWidth={"460px"}
+        >
           <Box component="div" color={theme.palette.primary.main} fontWeight={400} display={"grid"}>
             <Typography
               variant="h2"
               sx={{
                 fontSize: {
                   xs: "2.5rem",
-                  md: "3.5rem",
+                  sm: "3.5rem",
                 },
               }}
               fontWeight={600}
@@ -122,6 +151,7 @@ const EmailSubscription = () => {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 helperText={errorr && "Please, input correct email"}
+                sx={{ maxWidth: "385px" }}
               />
               <SButton variant="contained" type="submit">
                 Subscribe to montly newsletter

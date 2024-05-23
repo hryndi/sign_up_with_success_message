@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SuccessMessage from "./components/SuccessMessage.tsx";
+import EmailSubscription from "./components/EmailSubscription";
 
 const theme = createTheme({
   palette: {
@@ -32,10 +35,31 @@ const theme = createTheme({
   },
 });
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>
-);
+const Main = () => {
+  const [value, setValue] = useState<string>("ash@loremcompany.com");
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "/",
+          element: <EmailSubscription setValue={setValue} value={value} />,
+        },
+        {
+          path: "/success",
+          element: <SuccessMessage value={value} />,
+        },
+      ],
+    },
+  ]);
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </React.StrictMode>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")!).render(<Main />);
