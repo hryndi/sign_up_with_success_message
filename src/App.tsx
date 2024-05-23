@@ -1,9 +1,10 @@
 import Grid from "@mui/material/Grid";
-import EmailSubscription from "./components/EmailSubscription";
 import { useTheme } from "@mui/material/styles";
 
+import { Outlet } from "react-router-dom";
 function App() {
   const theme = useTheme();
+
   return (
     <Grid
       container
@@ -15,7 +16,7 @@ function App() {
       sx={{ backgroundColor: theme.palette.background.default, fontFamily: "Roboto, sans-serif" }}
     >
       <Grid item>
-        <EmailSubscription />
+        <Outlet />
       </Grid>
     </Grid>
   );
