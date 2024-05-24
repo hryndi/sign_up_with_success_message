@@ -88,7 +88,7 @@ const EmailSubscription = ({ value, setValue }: EmailSubscriptionProps) => {
     e.preventDefault();
     if (value.includes("@")) {
       setError(false);
-      navigate("/social_links_profile/success/");
+      navigate("/sign_up_with_success_message/success/");
     } else {
       setError(true);
     }
