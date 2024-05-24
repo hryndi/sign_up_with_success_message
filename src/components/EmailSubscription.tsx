@@ -10,6 +10,7 @@ import IllustrationImgDesk from "../assets/illustration-sign-up-desktop.svg";
 import { useTheme } from "@mui/material/styles";
 import BulletImg from "../assets/icon-list.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Main = styledMui(Box)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
@@ -82,11 +83,12 @@ interface EmailSubscriptionProps {
 
 const EmailSubscription = ({ value, setValue }: EmailSubscriptionProps) => {
   const [errorr, setError] = useState(false);
-
+  const navigate = useNavigate();
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (value.includes("@")) {
       setError(false);
+      navigate("/social_links_profile/success/");
     } else {
       setError(true);
     }

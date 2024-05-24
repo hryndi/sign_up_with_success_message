@@ -39,15 +39,15 @@ const Main = () => {
   const [value, setValue] = useState<string>("ash@loremcompany.com");
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/social_links_profile/",
       element: <App />,
       children: [
         {
-          path: "/",
+          path: "/social_links_profile/",
           element: <EmailSubscription setValue={setValue} value={value} />,
         },
         {
-          path: "/success",
+          path: "/social_links_profile/success",
           element: <SuccessMessage value={value} />,
         },
       ],
