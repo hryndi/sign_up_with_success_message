@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import SuccessIcon from "../assets/icon-success.svg";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 const Main = styledMui(Box)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
@@ -34,10 +35,9 @@ const ContentWrapp = styled.div`
 `;
 
 const STypography = styledMui(Typography)({
-  "@media (min-width:375px)": {
-    fontSize: "2.5rem",
-    marginTop: "1rem",
-  },
+  fontSize: "2.5rem",
+  marginTop: "1rem",
+
   "@media (min-width:500px)": {
     marginTop: "1rem",
     fontSize: "3.5rem",
@@ -51,6 +51,7 @@ const SButton = styledMui(Button)({
 });
 
 const SuccessMessage = ({ value }: { value: string }) => {
+  const navigate = useNavigate();
   return (
     <Main component="main">
       <ContentWrapp>
@@ -64,7 +65,9 @@ const SuccessMessage = ({ value }: { value: string }) => {
           click the button inside to confirm your subscriotion{" "}
         </Typography>
       </ContentWrapp>
-      <SButton variant="contained">Dismiss message</SButton>
+      <SButton variant="contained" onClick={() => navigate("/social_links_profile/")}>
+        Dismiss message
+      </SButton>
     </Main>
   );
 };

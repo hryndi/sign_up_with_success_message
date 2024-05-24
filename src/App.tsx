@@ -1,6 +1,5 @@
 import Grid from "@mui/material/Grid";
 import { useTheme } from "@mui/material/styles";
-
 import { Outlet } from "react-router-dom";
 function App() {
   const theme = useTheme();
