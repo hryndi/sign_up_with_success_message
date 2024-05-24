@@ -65,7 +65,7 @@ const SuccessMessage = ({ value }: { value: string }) => {
           click the button inside to confirm your subscriotion{" "}
         </Typography>
       </ContentWrapp>
-      <SButton variant="contained" onClick={() => navigate("/social_links_profile/")}>
+      <SButton variant="contained" onClick={() => navigate("/sign_up_with_success_message/")}>
         Dismiss message
       </SButton>
     </Main>
